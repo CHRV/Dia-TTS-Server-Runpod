@@ -1,0 +1,43 @@
+[project]
+name = "dia-tts-server-runpod"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = "==3.12.*"
+dependencies = [
+    "descript-audio-codec>=1.0.0",
+    "fastapi>=0.116.1",
+    "hf-transfer>=0.1.9",
+    "huggingface-hub>=0.34.4",
+    "jinja2>=3.1.6",
+    "librosa>=0.11.0",
+    "numpy>=2.2.6",
+    "openai-whisper>=20250625",
+    "praat-parselmouth>=0.4.6",
+    "pydantic>=2.11.7",
+    "pydub>=0.25.1",
+    "python-dotenv>=1.1.1",
+    "python-multipart>=0.0.20",
+    "pyyaml>=6.0.2",
+    "requests>=2.32.5",
+    "safetensors>=0.6.2",
+    "soundfile>=0.13.1",
+    "torch>=2.8.0",
+    "torchaudio>=2.8.0",
+    "tqdm>=4.67.1",
+    "uvicorn[standard]>=0.35.0",
+]
+
+
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cu126", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+]
+torchaudio = [
+  { index = "pytorch-cu126", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
