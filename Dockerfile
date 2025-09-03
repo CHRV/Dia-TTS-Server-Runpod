@@ -36,6 +36,7 @@ RUN --mount=type=bind,source=uv.lock,target=uv.lock \
 # Copy application code
 COPY . .
 
+RUN chmod +x ./entrypoint.sh
 # Create required directories
 RUN mkdir -p model_cache reference_audio outputs voices
 
