@@ -5,7 +5,7 @@
 
 :{$PORT} {
 	rewrite /ping /health
-	reverse_proxy http://127.0.0.1:8003
+	reverse_proxy http://127.0.0.1:9000
 
 	handle_errors {
 		@5xx expression ({path} == "/ping" || {path} == "/health") && {err.status_code} >= 500 && {env.START_TIME} != "" && {env.WARM_UP} != "" && (int({env.START_TIME}) + int({env.WARM_UP})) > int({time.now.unix})
