@@ -10,10 +10,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     libsndfile1 \
     ffmpeg \
+    git \
+    curl \
     && curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' \
-        | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg \
+        | gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg \
     && curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' \
-        | sudo tee /etc/apt/sources.list.d/caddy-stable.list \
+        | tee /etc/apt/sources.list.d/caddy-stable.list \
     && chmod o+r /usr/share/keyrings/caddy-stable-archive-keyring.gpg \
     && chmod o+r /etc/apt/sources.list.d/caddy-stable.list \
     && apt update \
@@ -34,6 +36,7 @@ RUN --mount=type=bind,source=uv.lock,target=uv.lock \
 # Copy application code
 COPY . .
 
+RUN chmod +x ./entrypoint.sh
 # Create required directories
 RUN mkdir -p model_cache reference_audio outputs voices
 
